@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>조건부 노동수요와 생성형 AI — 산업별 구인수요의 반사실 실험실 · 7개 언어판</title>
+<meta name="description" content="워크넷 195개월 구인 행정데이터와 비용최소화 조건부 노동수요함수로 생성형 AI 확산 전후 산업별 구인수요 충격을 검증한 인터랙티브 리포트. 한국어·English·中文·日本語·Oʻzbekcha·Русский·Tiếng Việt 7개 언어판.">
+<meta name="author" content="안상선">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="조건부 노동수요와 생성형 AI — 산업별 구인수요의 반사실 실험실">
+<meta property="og:description" content="정보통신업 구인수요 -40.7%p는 정말 생성형 AI 때문일까? 논문 원문의 수치와 계량모형을 그대로 재현한 인터랙티브 해설. 7개 언어판.">
+<meta property="og:image" content="hero_01_ledger.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="ko" href="01_labor_demand_ai.html">
+<link rel="alternate" hreflang="en" href="01_labor_demand_ai.en.html">
+<link rel="alternate" hreflang="zh-CN" href="01_labor_demand_ai.zh.html">
+<link rel="alternate" hreflang="ja" href="01_labor_demand_ai.ja.html">
+<link rel="alternate" hreflang="uz" href="01_labor_demand_ai.uz.html">
+<link rel="alternate" hreflang="ru" href="01_labor_demand_ai.ru.html">
+<link rel="alternate" hreflang="vi" href="01_labor_demand_ai.vi.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#13141f; --panel:#1c1e2d; --panel2:#25283a; --rule:#363a52;
+    --text:#eceaf3; --muted:#9d9bb8;
+    --stain:#d672d6; --gfp:#5ee39c; --eye:#f0604d; --amber:#f1b646; --info:#82b8ff; --cyan:#57d0dc; --pink:#ff86b8;
+    --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:20px}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); font-size:16px; line-height:1.7;
+    word-break:keep-all;
+    background-image:
+      radial-gradient(900px 420px at 82% -6%, rgba(214,114,214,.13), transparent 68%),
+      radial-gradient(700px 380px at 4% 0%, rgba(130,184,255,.09), transparent 66%);
+    background-repeat:no-repeat;
+  }
+  a{color:inherit; text-decoration:none}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 clamp(16px,3.4vw,32px)}
+  .skip{position:absolute; left:-9999px; top:0; background:var(--amber); color:#1a1408; padding:10px 16px; z-index:99; font-weight:700}
+  .skip:focus{left:12px; top:12px; outline:2px solid #1a1408}
+  :focus-visible{outline:2px solid var(--amber); outline-offset:3px; border-radius:4px}
+
+  /* ── 상단 유틸 띠 ───────────────────────────── */
+  .top{border-bottom:1px solid var(--rule); background:rgba(19,20,31,.86); backdrop-filter:blur(6px); position:sticky; top:0; z-index:20}
+  .top-in{display:flex; align-items:center; gap:10px; min-height:52px; flex-wrap:wrap; font-size:13px}
+  .mark{font-weight:700; letter-spacing:-.01em; white-space:nowrap}
+  .top-sep{color:var(--rule)}
+  .top-meta{color:var(--muted); min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .top-right{margin-left:auto; color:var(--muted); white-space:nowrap}
+  .top-right b{color:var(--text); font-weight:600}
+
+  /* ── 히어로 ────────────────────────────────── */
+  .hero{padding:clamp(34px,5vw,64px) 0 clamp(26px,3.4vw,44px)}
+  .hero-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.02fr); gap:clamp(26px,4vw,52px); align-items:start}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; margin:0 0 16px;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--amber); border:1px solid rgba(241,182,70,.42); border-radius:3px; padding:5px 9px;
+    background:rgba(241,182,70,.08);
+  }
+  h1{
+    margin:0; font-size:clamp(27px,3.6vw,44px); line-height:1.22; letter-spacing:-.028em; font-weight:700;
+  }
+  .sub{
+    margin:10px 0 0; font-size:clamp(17px,1.9vw,23px); line-height:1.4; font-weight:500; color:var(--text);
+    letter-spacing:-.02em;
+  }
+  .sub::after{content:""; display:block; width:56px; height:3px; margin-top:16px; background:linear-gradient(90deg,var(--stain),var(--info)); border-radius:2px}
+  .lead{margin:20px 0 0; color:var(--muted); font-size:15.5px; max-width:46ch}
+  .lead b{color:var(--text); font-weight:600}
+
+  .kpis{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:26px 0 0; max-width:430px}
+  .kpi{border:1px solid var(--rule); border-left:3px solid var(--rule); border-radius:4px; padding:10px 12px; background:var(--panel)}
+  .kpi .v{font-family:var(--mono); font-size:19px; font-weight:600; letter-spacing:-.03em; line-height:1.2}
+  .kpi .k{font-size:11.5px; color:var(--muted); margin-top:3px; line-height:1.45}
+  .kpi.r{border-left-color:var(--eye)}   .kpi.r .v{color:var(--eye)}
+  .kpi.a{border-left-color:var(--amber)} .kpi.a .v{color:var(--amber)}
+  .kpi.g{border-left-color:var(--gfp)}   .kpi.g .v{color:var(--gfp)}
+  .kpi.p{border-left-color:var(--stain)} .kpi.p .v{color:var(--stain)}
+
+  /* ── 시그니처: 번역판 보드 ───────────────────── */
+  .board{
+    border:3px solid var(--rule); border-radius:8px; overflow:hidden;
+    background:#171926;
+    box-shadow:0 7px 0 rgba(0,0,0,.4), 0 0 0 1px rgba(130,184,255,.07) inset;
+  }
+  .board-bar{
+    display:flex; align-items:center; gap:10px; padding:8px 12px;
+    background:linear-gradient(180deg,#2f7d5b,#256448);   /* 삽화의 초록 헤더 띠 */
+    border-bottom:2px solid #1b4c37;
+    font-family:var(--mono); font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#dff6ea;
+  }
+  .board-bar .tab{background:rgba(0,0,0,.26); border:1px solid rgba(255,255,255,.22); border-radius:3px; padding:2px 7px; font-weight:600}
+  .board-bar .note{margin-left:auto; opacity:.82; letter-spacing:.06em; text-transform:none; font-family:var(--sans); font-size:11.5px}
+
+  .board-grid{display:grid; grid-template-columns:46px minmax(0,1fr) 72px 92px}
+  .bhead{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:#8f93ab; background:var(--panel2); padding:7px 10px; border-bottom:1px solid var(--rule); border-right:1px solid var(--rule);
+  }
+  .bhead:last-child{border-right:0; text-align:right}
+  .bhead:nth-child(3){text-align:center}
+
+  .row{display:contents}
+  .row > span, .row > i{
+    display:flex; align-items:center; padding:11px 10px;
+    border-bottom:1px solid rgba(54,58,82,.6); border-right:1px solid rgba(54,58,82,.6);
+    background:#191b29; transition:background .16s ease, color .16s ease;
+  }
+  .row > span:last-child{border-right:0; justify-content:flex-end}
+  .row:last-child > span{border-bottom:0}
+  .row:hover > span{background:#202334}
+  .row .no{
+    font-family:var(--mono); font-size:11.5px; color:#767b95; letter-spacing:.02em; justify-content:center;
+    border-right:1px solid rgba(54,58,82,.6);
+  }
+  .row .lang{gap:9px; font-weight:500; font-size:15px; letter-spacing:-.01em}
+  .row .loc{font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; justify-content:center}
+  .row .open{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; color:var(--muted);
+    justify-content:flex-end; gap:6px;
+  }
+  .row:hover .open{color:var(--amber)}
+  .row:hover .lang{color:#fff}
+
+  /* 언어별 데이터 블록 */
+  .blk{
+    width:11px; height:11px; border-radius:2px; flex:0 0 auto;
+    box-shadow:0 0 0 1px rgba(0,0,0,.45) inset;
+    transition:transform .16s ease;
+  }
+  .row[data-lang="ko"] .blk{background:var(--stain)}
+  .row[data-lang="en"] .blk{background:var(--info)}
+  .row[data-lang="zh"] .blk{background:var(--eye)}
+  .row[data-lang="ja"] .blk{background:var(--pink)}
+  .row[data-lang="uz"] .blk{background:var(--gfp)}
+  .row[data-lang="ru"] .blk{background:var(--amber)}
+  .row[data-lang="vi"] .blk{background:var(--cyan)}
+  .row:hover .blk{transform:translateY(-3px)}
+
+  /* 빨간 점선으로 비워 둔 한 칸 — 삽화 속 그 빈 셀 */
+  .row.primary .open{
+    position:relative; color:var(--amber);
+    box-shadow:inset 0 0 0 2px rgba(240,96,77,.75);
+    background:repeating-linear-gradient(135deg,rgba(240,96,77,.10) 0 6px,transparent 6px 12px);
+  }
+  .row.primary .open .fill{
+    position:absolute; right:8px; width:26px; height:15px; border-radius:2px;
+    background:linear-gradient(180deg,#c98ae8,#a463d6);
+    box-shadow:0 0 0 1px rgba(0,0,0,.4) inset;
+    transform:translateY(14px); opacity:0; transition:transform .2s ease, opacity .2s ease;
+  }
+  .row.primary:hover .open .fill,
+  .row.primary:focus-visible .open .fill{transform:translateY(0); opacity:1}
+  .row.primary .open .t{position:relative; z-index:1}
+
+  .board-foot{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:9px 12px;
+    border-top:2px solid var(--rule); background:var(--panel);
+    font-size:11.5px; color:var(--muted);
+  }
+  .board-foot .dot{width:7px; height:7px; border-radius:50%; background:var(--gfp); box-shadow:0 0 7px rgba(94,227,156,.7)}
+  .board-foot b{color:var(--text); font-weight:600}
+
+  /* ── 본문 블록 ─────────────────────────────── */
+  .inside{padding:clamp(28px,4vw,52px) 0 0}
+  .inside-grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:clamp(24px,4vw,48px)}
+  h2{font-size:clamp(19px,2.2vw,24px); letter-spacing:-.02em; margin:0 0 6px; line-height:1.35}
+  .h2note{margin:0 0 18px; color:var(--muted); font-size:14px}
+  .steps{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule)}
+  .steps li{
+    display:grid; grid-template-columns:52px minmax(0,1fr); gap:12px; align-items:baseline;
+    padding:11px 2px; border-bottom:1px solid var(--rule); font-size:14.5px;
+  }
+  .steps .s{font-family:var(--mono); font-size:11px; color:var(--amber); letter-spacing:.06em}
+  .steps b{font-weight:600}
+  .steps span.d{color:var(--muted)}
+
+  .facts{border:1px solid var(--rule); border-radius:6px; background:var(--panel); padding:16px 18px}
+  .facts h3{margin:0 0 10px; font-size:13px; font-family:var(--mono); letter-spacing:.13em; text-transform:uppercase; color:var(--info)}
+  .facts dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:7px 14px; font-size:13.5px}
+  .facts dt{color:var(--muted); white-space:nowrap}
+  .facts dd{margin:0; font-weight:500}
+  .facts dd.mono{font-family:var(--mono); font-size:13px}
+
+  /* ── 푸터 ──────────────────────────────────── */
+  footer{margin-top:clamp(34px,5vw,60px); border-top:1px solid var(--rule); padding:22px 0 40px; color:var(--muted); font-size:13px}
+  .foot-grid{display:flex; flex-wrap:wrap; gap:10px 26px; align-items:baseline}
+  .foot-grid .cite{max-width:62ch; line-height:1.65}
+  .foot-grid .cite b{color:var(--text); font-weight:600}
+  .cc{
+    display:inline-flex; align-items:center; gap:7px; border:1px solid var(--rule); border-radius:4px;
+    padding:3px 8px; font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--text);
+    background:var(--panel);
+  }
+  .foot-note{width:100%; margin:12px 0 0; color:#7d8199; font-size:12px}
+
+  @media (max-width:920px){
+    .hero-grid, .inside-grid{grid-template-columns:minmax(0,1fr)}
+    .lead{max-width:none}
+    .kpis{max-width:none}
+  }
+  @media (max-width:560px){
+    .board-grid{grid-template-columns:38px minmax(0,1fr) 74px}
+    .bhead:nth-child(3), .row .loc{display:none}
+    .row .open{font-size:11px}
+    .row.primary .open .fill{width:20px; height:13px; right:6px}
+    .top-meta{display:none}
+    .steps li{grid-template-columns:44px minmax(0,1fr)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none !important; animation:none !important}
+  }
+  @media print{
+    body{background:#fff; color:#111}
+    .top{display:none}
+    .board{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#editions">번역판 목록으로 바로 가기</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <span class="mark">🔬 AI 노동수요 랩</span>
+    <span class="top-sep">/</span>
+    <span class="top-meta">논문 해설 대시보드 · 경제계량 AI 실증</span>
+    <span class="top-right"><b>안상선</b> (2026) · 7개 언어판</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">제 06 편 · 반사실 실험실</p>
+        <h1>조건부 노동수요와 생성형 AI</h1>
+        <p class="sub">산업별 구인수요의 반사실 실험실</p>
+        <p class="lead">
+          정보통신업 구인수요가 <b>-40.7%p</b> 무너졌다. 정말 생성형 AI 때문일까?
+          워크넷 195개월 행정데이터와 비용최소화 조건부 노동수요함수로, 그 이탈이
+          <b>언제·얼마나</b> 일어났는지 사후 검증한 인터랙티브 리포트.
+        </p>
+
+        <div class="kpis">
+          <div class="kpi r"><div class="v">-40.7%p</div><div class="k">대조군(제조업) 대비 구인수요 이탈</div></div>
+          <div class="kpi p"><div class="v">-55.7%p</div><div class="k">위약 63개로 치우침 보정 후 (p = .016)</div></div>
+          <div class="kpi a"><div class="v">2022.08~</div><div class="k">이탈 시작 — ChatGPT 공개보다 앞섬</div></div>
+          <div class="kpi g"><div class="v">ρ = -0.257</div><div class="k">사전 위험 지수와 실제 순위 상관 (p = .623)</div></div>
+        </div>
+      </div>
+
+      <!-- 시그니처: 삽화 속 그 보드가 번역판 선택기가 된다 -->
+      <div class="board" id="editions">
+        <div class="board-bar">
+          <span class="tab">번역판</span>
+          <span>EDITION / 7</span>
+          <span class="note">한 칸을 고르면 그 언어로 열립니다</span>
+        </div>
+
+        <div class="board-grid">
+          <div class="bhead">NO</div>
+          <div class="bhead">LANG</div>
+          <div class="bhead">LOC</div>
+          <div class="bhead">OPEN</div>
+
+          <a class="row primary" href="01_labor_demand_ai.html" data-lang="ko">
+            <span class="no">01</span>
+            <span class="lang"><i class="blk" aria-hidden="true"></i>한국어 <span style="font-family:var(--mono);font-size:10.5px;color:var(--amber);letter-spacing:.06em">원본</span></span>
+            <span class="loc">ko</span>
+            <span class="open"><span class="t">읽기 →</span><span class="fill" aria-hidden="true"></span></span>
+          </a>
+
+          <a class="row" href="01_labor_demand_ai.en.html" data-lang="en">
+            <span class="no">02</span>
+            <span class="lang"><i class="blk" aria-hidden="true"></i>English</span>
+            <span class="loc">en</span>
+            <span class="open">읽기 →</span>
+          </a>
+
+          <a class="row" href="01_labor_demand_ai.zh.html" data-lang="zh">
+            <span class="no">03</span>
+            <span class="lang"><i class="blk" aria-hidden="true"></i>中文</span>
+            <span class="loc">zh</span>
+            <span class="open">읽기 →</span>
+          </a>
+
+          <a class="row" href="01_labor_demand_ai.ja.html" data-lang="ja">
+            <span class="no">04</span>
+            <span class="lang"><i class="blk" aria-hidden="true"></i>日本語</span>
+            <span class="loc">ja</span>
+            <span class="open">읽기 →</span>
+          </a>
+
+          <a class="row" href="01_labor_demand_ai.uz.html" data-lang="uz">
+            <span class="no">05</span>
+            <span class="lang"><i class="blk" aria-hidden="true"></i>Oʻzbekcha</span>
+            <span class="loc">uz</span>
+            <span class="open">읽기 →</span>
+          </a>
+
+          <a class="row" href="01_labor_demand_ai.ru.html" data-lang="ru">
+            <span class="no">06</span>
+            <span class="lang"><i class="blk" aria-hidden="true"></i>Русский</span>
+            <span class="loc">ru</span>
+            <span class="open">읽기 →</span>
+          </a>
+
+          <a class="row" href="01_labor_demand_ai.vi.html" data-lang="vi">
+            <span class="no">07</span>
+            <span class="lang"><i class="blk" aria-hidden="true"></i>Tiếng Việt</span>
+            <span class="loc">vi</span>
+            <span class="open">읽기 →</span>
+          </a>
+        </div>
+
+        <div class="board-foot">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="recall">번역판마다 같은 수치·같은 인터랙티브 실습이 들어 있습니다.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inside">
+    <div class="wrap inside-grid">
+      <div>
+        <h2>한 편에 들어 있는 것</h2>
+        <p class="h2note">논문 원문의 수치와 계량모형을 그대로 재현했습니다. 순서대로 읽으면 중학생도 따라올 수 있습니다.</p>
+        <ol class="steps">
+          <li><span class="s">00</span><span><b>과자 공장 비유</b> <span class="d">— 슬라이더로 익히는 반사실(counterfactual)</span></span></li>
+          <li><span class="s">01</span><span><b>질문</b> <span class="d">— 사전 대체위험 지수 vs 실제 구인수요 (6개 산업 산점도)</span></span></li>
+          <li><span class="s">02</span><span><b>방법</b> <span class="d">— 자본 K를 소거한 조건부 노동수요함수, 워크넷 커버리지 통제</span></span></li>
+          <li><span class="s">03</span><span><b>충격</b> <span class="d">— 반사실 경로와 -40.7%p, 위약(Placebo) 63개</span></span></li>
+          <li><span class="s">04</span><span><b>시점</b> <span class="d">— 2022년 8월의 선행 이탈, 인과 귀속의 함정</span></span></li>
+          <li><span class="s">05</span><span><b>실험실</b> <span class="d">— 9대 강건성 검증, 초파리 vs Money-Robo 대결</span></span></li>
+          <li><span class="s">06</span><span><b>정리</b> <span class="d">— 산업별 6행 결론 표, 지식 색인, 인용·BibTeX 내려받기</span></span></li>
+        </ol>
+      </div>
+
+      <aside class="facts">
+        <h3>Data &amp; Method</h3>
+        <dl>
+          <dt>데이터</dt><dd>워크넷 유효구인인원 2010.01~2026.03 (195개월)</dd>
+          <dt>모형</dt><dd class="mono">ln L = c + b₁ ln Y + b_wr ln(w/r) + b_tot ln L_total</dd>
+          <dt>검증</dt><dd>Quandt-Andrews sup-F · 위약 63개 · ARDL · ECM</dd>
+          <dt>실습</dt><dd>인터랙티브 8종 · canvas 7개 · 퀴즈 5문항</dd>
+          <dt>의존성</dt><dd>없음 — 단일 HTML, 외부 라이브러리 0</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <p class="cite">
+        <b>안상선</b> (2026). 조건부 노동수요함수를 이용한 산업별 구인수요 분석: 생성형 AI 확산 전후의 비교.
+        『미래사회』, 17(3), 247-265. DOI: 10.22987/jifso.2026.17.3.247
+      </p>
+      <span class="cc">CC BY-NC 4.0</span>
+    </div>
+    <p class="foot-note">
+      글·그림·코드 © 안상선 ((주)M-Robo 대표). 교육·연구 목적 사용을 환영합니다.
+      그림에는 글자가 없으며, 화면의 모든 수치는 본문 코드와 데이터에서 계산됩니다.
+      과자 공장 슬라이더와 시계열 비유 도식은 개념 설명용 모형입니다.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  try{
+    var cur = localStorage.getItem('lab01_lang');
+    if(!cur || cur==='ko') return;
+    var row = document.querySelector('.row[data-lang="'+cur+'"]');
+    if(!row) return;
+    row.style.background = '';
+    var note = document.getElementById('recall');
+    if(note){
+      var name = row.querySelector('.lang').textContent.trim().replace(/\s*원본\s*/,'');
+      note.innerHTML = '최근에 읽은 판본: <b style="color:var(--text)">'+name+'</b> — 같은 칸을 다시 누르면 이어서 열립니다.';
+    }
+  }catch(e){}
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

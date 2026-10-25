@@ -9,7 +9,7 @@ All pages are single self-contained HTML files (no build step, no external libra
 
 | 파일 | 언어 | 크기 | 설명 |
 |---|---|---|---|
-| `index.html` | 한국어 | — | (선택) 편 목록 첫 화면. 이 저장소는 1편 구성이면 생략 가능 |
+| `index.html` | 한국어 | 약 17 KB | 첫 화면 — 7개 언어판 선택 보드. 저장소 루트 URL이 이 파일을 엽니다 |
 | `01_labor_demand_ai.html` | 한국어 (원본) | 약 300 KB | 본편. 장면 그림 1장 base64 내장 |
 | `01_labor_demand_ai.en.html` | English | 약 300 KB | 영어판 |
 | `01_labor_demand_ai.zh.html` | 中文 (간체) | 약 300 KB | 중국어판 |

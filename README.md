@@ -11,10 +11,10 @@ conditional labor demand function from Ahn (2026).
 
 ## 바로 보기 / Live
 
-- 한국어: `https://adminmrobo.github.io/<저장소>/01_labor_demand_ai.html`
-- English: `https://adminmrobo.github.io/<저장소>/01_labor_demand_ai.en.html`
+- 한국어: `https://adminmrobo.github.io/my_article_06_AI_effect_to_labor_demand/01_labor_demand_ai.html`
+- English: `https://adminmrobo.github.io/my_article_06_AI_effect_to_labor_demand/01_labor_demand_ai.en.html`
 
-> `<저장소>`를 실제 저장소 이름으로 바꿔 주세요. (Settings → Pages → Deploy from a branch → `main` / `(root)`)
+> 저장소 루트: <https://adminmrobo.github.io/my_article_06_AI_effect_to_labor_demand/> — 이 주소는 `index.html`(언어 선택 첫 화면)을 엽니다.
 
 ## 저자 / Author
 
@@ -90,11 +90,17 @@ conditional labor demand function from Ahn (2026).
 ## 파일 / Files
 
 ```
+index.html                       첫 화면 — 7개 언어판 선택 보드 (저장소 루트 URL)
 01_labor_demand_ai.html          한국어 원본 (약 284 KB, 그림 base64 내장)
 01_labor_demand_ai.en.html       English
+01_labor_demand_ai.zh.html       中文
+01_labor_demand_ai.ja.html       日本語
+01_labor_demand_ai.uz.html       Oʻzbekcha
+01_labor_demand_ai.ru.html       Русский
+01_labor_demand_ai.vi.html       Tiếng Việt
 README.md                        이 파일
 INDEX.md                         파일·자산·페이지 지도
-assets/hero_01_ledger.webp       장면 그림 원본 (1200×800)
+hero_01_ledger.webp              장면 그림 원본 (1200×800), 루트
 ```
 
 ---
