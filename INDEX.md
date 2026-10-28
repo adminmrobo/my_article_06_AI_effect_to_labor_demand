@@ -9,8 +9,8 @@ All pages are single self-contained HTML files (no build step, no external libra
 
 | 파일 | 언어 | 크기 | 설명 |
 |---|---|---|---|
-| `index.html` | 한국어 | 약 17 KB | 첫 화면 — 7개 언어판 선택 보드. 저장소 루트 URL이 이 파일을 엽니다 |
-| `01_labor_demand_ai.html` | 한국어 (원본) | 약 300 KB | 본편. 장면 그림 1장 base64 내장 |
+| `index.html` | 한국어 | — | (선택) 편 목록 첫 화면. 이 저장소는 1편 구성이면 생략 가능 |
+| `01_labor_demand_ai.html` | 한국어 (원본) | 약 192 KB | 본편. 표정 라이브러리 아바타 8종 base64 내장 |
 | `01_labor_demand_ai.en.html` | English | 약 300 KB | 영어판 |
 | `01_labor_demand_ai.zh.html` | 中文 (간체) | 약 300 KB | 중국어판 |
 | `01_labor_demand_ai.ja.html` | 日本語 | 약 300 KB | 일본어판 |
@@ -19,7 +19,6 @@ All pages are single self-contained HTML files (no build step, no external libra
 | `01_labor_demand_ai.vi.html` | Tiếng Việt | 약 300 KB | 베트남어판 |
 | `README.md` | 7개 언어 | — | 저장소 안내 |
 | `INDEX.md` | 한국어/English | — | 이 파일 |
-| `hero_01_ledger.webp` | — | 약 145 KB | 장면 그림 원본(1200×800). HTML에는 같은 그림이 base64로 내장됨 |
 
 ---
 
@@ -27,11 +26,10 @@ All pages are single self-contained HTML files (no build step, no external libra
 
 | 키 | 파일 | 크기 | 내용 | 상태 |
 |---|---|---|---|---|
-| `hero_01` | `hero_01_ledger.webp` | 1200×800 (3:2) | 밤의 원장 사무실. 벽면 스프레드시트 보드에 판다가 빈 칸(빨간 테두리)에 보라 블록을 넣고, 박사·조수·초파리 연구원·Money-Robo가 검증 중 | 적용 완료 |
-| — | 코드 생성 | 64×64 | 캐릭터 말풍선 아바타 4종(픽셀 맵 → canvas → dataURL). 외부 파일 없음 | 내장 |
 | — | CSS/canvas | — | 배경 그라데이션, 육각 번호, 인터랙티브 차트 7종 | 내장 |
 
-그림 규격: 16비트 RPG풍 픽셀아트, 굵은 외곽선(#1d1a22), 2~3단계 명암, 글자·숫자·로고 없음.
+대화 아바타 출처: [fruitfly-lab-expressions](https://github.com/adminmrobo/fruitfly-lab-expressions) (16비트 SNES풍 픽셀아트, 캐릭터 4인 × 표정 24종).
+연회색 배경을 가장자리 플러드필로 투명화 → 트림 → 높이 124px → WebP q92 → base64. 화면 표시 54×62px `object-fit:contain`.
 그림 속에는 글자가 없으며, 화면의 모든 수치는 본문 코드·데이터에서 계산됩니다.
 
 ---
@@ -40,7 +38,7 @@ All pages are single self-contained HTML files (no build step, no external libra
 
 | id | 제목 | 내용 |
 |---|---|---|
-| `#hero` | 히어로 | 제목, 핵심 수치 4칸, 장면 그림 01-A, 연구실 브리핑 말풍선 4개 |
+| `#hero` | 히어로 | 제목, 핵심 수치 4칸, 연구실 브리핑 말풍선 4개(원본 뱅크 아바타) |
 | `#factory` | 🏭 공장 반사실 비유 | 과자 공장 슬라이더 실습 — 반사실 개념 |
 | `#timeseries` | 📈 시계열 4대 개념 | 시계열·자기상관·공적분·ARDL 인터랙티브 도식 |
 | `#lv1` | ① 질문 | 사전 대체위험 지수 vs 실제 구인수요 (산점도) |

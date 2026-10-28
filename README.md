@@ -11,10 +11,10 @@ conditional labor demand function from Ahn (2026).
 
 ## 바로 보기 / Live
 
-- 한국어: `https://adminmrobo.github.io/my_article_06_AI_effect_to_labor_demand/01_labor_demand_ai.html`
-- English: `https://adminmrobo.github.io/my_article_06_AI_effect_to_labor_demand/01_labor_demand_ai.en.html`
+- 한국어: `https://adminmrobo.github.io/<저장소>/01_labor_demand_ai.html`
+- English: `https://adminmrobo.github.io/<저장소>/01_labor_demand_ai.en.html`
 
-> 저장소 루트: <https://adminmrobo.github.io/my_article_06_AI_effect_to_labor_demand/> — 이 주소는 `index.html`(언어 선택 첫 화면)을 엽니다.
+> `<저장소>`를 실제 저장소 이름으로 바꿔 주세요. (Settings → Pages → Deploy from a branch → `main` / `(root)`)
 
 ## 저자 / Author
 
@@ -58,7 +58,7 @@ conditional labor demand function from Ahn (2026).
 
 | 섹션 | 내용 |
 |---|---|
-| 히어로 | 제목, 핵심 수치 4칸, 장면 그림, 연구실 브리핑 |
+| 히어로 | 제목, 핵심 수치 4칸, 연구실 브리핑 말풍선 4개(뱅크 아바타) |
 | `#factory` | 과자 공장 슬라이더로 익히는 반사실(counterfactual) 개념 |
 | `#timeseries` | 시계열·자기상관·공적분·ARDL 4대 개념 인터랙티브 도식 |
 | `#lv1` | 사전 대체위험 지수 vs 실제 구인수요 (산점도, 6개 산업) |
@@ -79,9 +79,8 @@ conditional labor demand function from Ahn (2026).
 
 - **데이터**: 고용노동부·한국고용정보원 워크넷 구인구직 및 취업동향(2010.01~2026.03 유효구인인원),
   한국은행 ECOS 기업대출 금리. 모든 수치는 논문 원문의 표와 일치하도록 재현했습니다.
-- **그림**: 16비트 픽셀아트 장면 1장(1200×800, `assets/hero_01_ledger.webp`)과 캐릭터 말풍선 아바타 4종.
-  아바타는 픽셀 맵을 canvas로 그려 쓰므로 이미지 파일이 필요 없습니다.
-- **그림 속 글자**: 장면 그림에는 글자·숫자·로고가 없습니다. 화면의 수치는 모두 코드에서 계산됩니다.
+  
+- **그림 속 글자**: 아바타 스프라이트에는 글자·숫자·로고가 없습니다. 화면의 수치는 모두 코드에서 계산됩니다.
 - **설명용 모형인 것**: 과자 공장 슬라이더(`#factory`)와 시계열 비유 도식(`#timeseries`)은 개념 설명용입니다.
   논문의 실측 수치는 `#lv1`~`#lv5`의 표와 차트이며, 각 수치에는 출처 표·식을 표시했습니다.
 
@@ -90,17 +89,10 @@ conditional labor demand function from Ahn (2026).
 ## 파일 / Files
 
 ```
-index.html                       첫 화면 — 7개 언어판 선택 보드 (저장소 루트 URL)
-01_labor_demand_ai.html          한국어 원본 (약 284 KB, 그림 base64 내장)
+01_labor_demand_ai.html          한국어 원본 (약 192 KB, 아바타 base64 내장)
 01_labor_demand_ai.en.html       English
-01_labor_demand_ai.zh.html       中文
-01_labor_demand_ai.ja.html       日本語
-01_labor_demand_ai.uz.html       Oʻzbekcha
-01_labor_demand_ai.ru.html       Русский
-01_labor_demand_ai.vi.html       Tiếng Việt
 README.md                        이 파일
 INDEX.md                         파일·자산·페이지 지도
-hero_01_ledger.webp              장면 그림 원본 (1200×800), 루트
 ```
 
 ---
