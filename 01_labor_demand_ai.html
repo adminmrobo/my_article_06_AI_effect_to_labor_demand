@@ -1786,6 +1786,7 @@
     var currentC2Ctrl = true;
     var currentC3Ind = 'J';
     var currentC5Scenario = 'R1';
+    var curKgFilter = 'all';
 
     
     window.addEventListener('DOMContentLoaded', function(){
@@ -1796,9 +1797,13 @@
       setupExport();
       renderKgList('all', '');
 
-      redrawAll();
-      setTimeout(redrawAll, 60);
-      setTimeout(redrawAll, 300);
+      function safeRedraw(){
+        try{ redrawAll(); }
+        catch(err){ console.error('redraw failed:', err); }
+      }
+      safeRedraw();
+      setTimeout(safeRedraw, 60);
+      setTimeout(safeRedraw, 300);
 
       // Buttons Factory
       document.getElementById('btnFacNormal').onclick = function(){
