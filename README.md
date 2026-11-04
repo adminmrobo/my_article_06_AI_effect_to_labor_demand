@@ -65,7 +65,7 @@ conditional labor demand function from Ahn (2026).
 | `#lv2` | 조건부 노동수요함수, 자본 K 소거, 워크넷 커버리지 통제 |
 | `#lv3` | -40.7%p 격차, 반사실 경로, 위약(Placebo) 63개 검증 |
 | `#lv4` | 2022년 8월 선행 이탈과 인과 귀속의 함정 |
-| `#lv5` | 9대 강건성 검증, 초파리 vs Money-Robo 대결 |
+| `#lv5` | 9대 강건성 검증, 초파리 vs 주판봇 대결 |
 | `#summary` | 산업별 6행 결론 표 |
 | `#kg` | 온톨로지 지식 색인(실시간 검색·미니 지식그래프) |
 | `#export` | 인용·BibTeX 복사, `kg.json`·`kg.ttl`·`references.bib` ZIP 내려받기 |

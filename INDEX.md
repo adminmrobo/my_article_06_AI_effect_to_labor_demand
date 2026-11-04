@@ -45,7 +45,7 @@ All pages are single self-contained HTML files (no build step, no external libra
 | `#lv2` | ② 방법 | 조건부 노동수요함수, 자본 K 소거, 커버리지 통제 |
 | `#lv3` | ③ 충격 | -40.7%p 격차, 반사실 경로, 위약 63개 |
 | `#lv4` | ④ 시점 | 2022년 8월 선행 이탈, 인과 귀속의 함정 |
-| `#lv5` | ⑤ 실험실 | 9대 강건성 검증, 초파리 vs Money-Robo 대결 |
+| `#lv5` | ⑤ 실험실 | 9대 강건성 검증, 초파리 vs 주판봇 대결 |
 | `#duel` | 대결 | 판정과 해설 |
 | `#summary` | 정리 | 산업별 6행 결론 표 |
 | `#kg` | 지식 색인 | 온톨로지 검색·미니 지식그래프 |
@@ -72,5 +72,5 @@ All pages are single self-contained HTML files (no build step, no external libra
 
 ## 6. 라이선스
 
-- 글·그림·코드: CC BY-NC 4.0 (저자 안상선, (주)M-Robo)
+- 글·그림·코드: CC BY-NC 4.0 (저자 안상선)
 - 인용: 안상선 (2026). 조건부 노동수요함수를 이용한 산업별 구인수요 분석: 생성형 AI 확산 전후의 비교. 『미래사회』, 17(3), 247-265.
