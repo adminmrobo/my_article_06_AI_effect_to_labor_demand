@@ -947,60 +947,601 @@
   </div>
 
   <!-- 기계 판독용 데이터 블록 -->
-  <script type="application/json" id="kg-raw">
+  <script type="application/json" id="kg-raw">{
+ "version": "1.1",
+ "page": "01_labor_demand_ai",
+ "nodes": [
   {
-    "version": "1.1",
-    "page": "01_labor_demand_ai",
-    "nodes": [
-      {"id": "lab:concept/conditional-labor-demand", "type": "Concept", "label": {"ko": "조건부 노동수요함수", "en": "Conditional Labor Demand Function"}, "definition": {"ko": "비용최소화 1계조건을 통해 자본 K를 소거하고 산출 Y와 상대가격 w/r로 구인수요를 도출하는 함수."}, "page": "01_labor_demand_ai", "anchor": "#lv2", "level": 2, "family": "evaluation", "confidence": "high"},
-      {"id": "lab:method/counterfactual-analysis", "type": "Method", "label": {"ko": "반사실 분석", "en": "Counterfactual Analysis"}, "definition": {"ko": "충격 이전의 안정적 법칙이 확산 이후에도 유지되었을 경우 나타났을 가상의 고용 경로."}, "page": "01_labor_demand_ai", "anchor": "#factory", "level": 2, "family": "evaluation", "confidence": "high"},
-      {"id": "lab:concept/time-series", "type": "Concept", "label": {"ko": "시계열 데이터의 특성", "en": "Time Series Properties"}, "definition": {"ko": "시간 순서대로 배열되어 시간 순서가 바뀌면 의미가 훼손되고 추세와 계절성을 갖는 자료 특성."}, "page": "01_labor_demand_ai", "anchor": "#timeseries", "level": 1, "family": "basics", "confidence": "high"},
-      {"id": "lab:concept/autocorrelation", "type": "Concept", "label": {"ko": "자기상관", "en": "Autocorrelation"}, "definition": {"ko": "시계열 자료에서 과거 자신의 값이 현재 값과 통계적으로 강한 연관을 갖는 성질."}, "page": "01_labor_demand_ai", "anchor": "#timeseries", "level": 1, "family": "basics", "confidence": "high"},
-      {"id": "lab:concept/cointegration", "type": "Concept", "label": {"ko": "공적분", "en": "Cointegration"}, "definition": {"ko": "개별 시계열 변수들이 불안정해도 이들의 선형결합이 안정적인 장기 균형 관계를 유지하는 성질."}, "page": "01_labor_demand_ai", "anchor": "#timeseries", "level": 2, "family": "basics", "confidence": "high"},
-      {"id": "lab:method/ardl-model", "type": "Method", "label": {"ko": "ARDL 모형", "en": "Autoregressive Distributed Lag Model"}, "definition": {"ko": "종속변수의 시차항과 설명변수의 시차항을 함께 포함하여 단기 충격과 장기 균형을 동시에 분석하는 계량모형."}, "page": "01_labor_demand_ai", "anchor": "#timeseries", "level": 2, "family": "evaluation", "confidence": "high"},
-      {"id": "lab:method/placebo-test", "type": "Method", "label": {"ko": "위약 순열 검정", "en": "Placebo Permutation Test"}, "definition": {"ko": "충격이 없던 과거 시점들에서 인위적 외삽을 반복해 모형의 절차적 치우침을 교정하는 방법."}, "page": "01_labor_demand_ai", "anchor": "#lv3", "level": 3, "family": "evaluation", "confidence": "high"},
-      {"id": "lab:claim/it-decline-40p", "type": "Claim", "label": {"ko": "정보통신업 대조군 대비 -40.7%p 구인수요 이탈", "en": "IT 40.7%p relative drop vs Manufacturing"}, "definition": {"ko": "验证区间实际招聘수요(1,417 名)가 반사실(3,777 名)에 비해 제조업 대비 40.7%p 크게 감소함."}, "page": "01_labor_demand_ai", "anchor": "#lv3", "level": 3, "family": "evaluation", "confidence": "high", "source": [{"cite": "Ahn 2026", "loc": "표 8"}]},
-      {"id": "lab:claim/timing-anomaly-202208", "type": "Claim", "label": {"ko": "이탈의 2022년 하반기 선행 시작", "en": "Drop started pre-ChatGPT in 2022 H2"}, "definition": {"ko": "이탈이 ChatGPT 출시(2022.11) 이전인 2022년 8월(-7.7%p), 9월(-18.0%p)부터 시작됨."}, "page": "01_labor_demand_ai", "anchor": "#lv4", "level": 3, "family": "evaluation", "confidence": "high", "source": [{"cite": "Ahn 2026", "loc": "IV장 2절"}]},
-      {"id": "lab:claim/index-uncorrelated", "type": "Claim", "label": {"ko": "사전 지수와 실제 충격 무상관", "en": "Ex-ante index uncorrelated with actual gap"}, "definition": {"ko": "구교준 외(2024) 위험 순위와 실제 이탈 순위의 Spearman 순위상관 rho=-0.257 (p=.623)로 유의하지 않음."}, "page": "01_labor_demand_ai", "anchor": "#lv1", "level": 3, "family": "evaluation", "confidence": "high", "source": [{"cite": "Ahn 2026", "loc": "표 12"}]},
-      {"id": "lab:metric/worknet-valid-openings", "type": "Metric", "label": {"ko": "워크넷 유효구인인원", "en": "Work-Net Active Job Openings"}, "definition": {"ko": "말일 기준 마감되지 않은 기업의 채용 신청 인원으로 노동수요의 흐름을 나타냄."}, "page": "01_labor_demand_ai", "anchor": "#bg", "level": 1, "family": "evaluation", "confidence": "high"}
-    ],
-    "edges": [
-      {"s": "lab:concept/time-series", "p": "lab:prerequisiteOf", "o": "lab:concept/autocorrelation", "anchor": "#timeseries", "confidence": "high"},
-      {"s": "lab:concept/autocorrelation", "p": "lab:prerequisiteOf", "o": "lab:concept/cointegration", "anchor": "#timeseries", "confidence": "high"},
-      {"s": "lab:concept/cointegration", "p": "lab:prerequisiteOf", "o": "lab:method/ardl-model", "anchor": "#timeseries", "confidence": "high"},
-      {"s": "lab:method/ardl-model", "p": "lab:prerequisiteOf", "o": "lab:concept/conditional-labor-demand", "anchor": "#lv2", "confidence": "high"},
-      {"s": "lab:concept/conditional-labor-demand", "p": "lab:prerequisiteOf", "o": "lab:method/counterfactual-analysis", "anchor": "#factory", "confidence": "high"},
-      {"s": "lab:method/counterfactual-analysis", "p": "lab:evaluatedBy", "o": "lab:method/placebo-test", "anchor": "#lv3", "confidence": "high"},
-      {"s": "lab:method/counterfactual-analysis", "p": "lab:supports", "o": "lab:claim/it-decline-40p", "anchor": "#lv3", "confidence": "high"},
-      {"s": "lab:claim/timing-anomaly-202208", "p": "lab:contrastsWith", "o": "lab:claim/it-decline-40p", "anchor": "#lv4", "confidence": "high"},
-      {"s": "lab:claim/index-uncorrelated", "p": "lab:contrastsWith", "o": "lab:concept/conditional-labor-demand", "anchor": "#lv1", "confidence": "high"}
-    ]
+   "id": "lab:concept/conditional-labor-demand",
+   "type": "Concept",
+   "label": {
+    "ko": "조건부 노동수요함수",
+    "en": "Conditional Labor Demand Function"
+   },
+   "definition": {
+    "ko": "비용최소화 1계조건을 통해 자본 K를 소거하고 산출 Y와 상대가격 w/r로 구인수요를 도출하는 함수."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#lv2",
+   "level": 2,
+   "family": "evaluation",
+   "confidence": "high",
+   "domain": [
+    "econ"
+   ]
+  },
+  {
+   "id": "lab:method/counterfactual-analysis",
+   "type": "Method",
+   "label": {
+    "ko": "반사실 분석",
+    "en": "Counterfactual Analysis"
+   },
+   "definition": {
+    "ko": "충격 이전의 안정적 법칙이 확산 이후에도 유지되었을 경우 나타났을 가상의 고용 경로."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#factory",
+   "level": 2,
+   "family": "evaluation",
+   "confidence": "high",
+   "domain": [
+    "econ",
+    "stats"
+   ]
+  },
+  {
+   "id": "lab:concept/time-series",
+   "type": "Concept",
+   "label": {
+    "ko": "시계열 데이터의 특성",
+    "en": "Time Series Properties"
+   },
+   "definition": {
+    "ko": "시간 순서대로 배열되어 시간 순서가 바뀌면 의미가 훼손되고 추세와 계절성을 갖는 자료 특성."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#timeseries",
+   "level": 1,
+   "family": "basics",
+   "confidence": "high",
+   "domain": [
+    "econ",
+    "stats"
+   ]
+  },
+  {
+   "id": "lab:concept/autocorrelation",
+   "type": "Concept",
+   "label": {
+    "ko": "자기상관",
+    "en": "Autocorrelation"
+   },
+   "definition": {
+    "ko": "시계열 자료에서 과거 자신의 값이 현재 값과 통계적으로 강한 연관을 갖는 성질."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#timeseries",
+   "level": 1,
+   "family": "basics",
+   "confidence": "high",
+   "domain": [
+    "econ",
+    "stats"
+   ]
+  },
+  {
+   "id": "lab:concept/cointegration",
+   "type": "Concept",
+   "label": {
+    "ko": "공적분",
+    "en": "Cointegration"
+   },
+   "definition": {
+    "ko": "개별 시계열 변수들이 불안정해도 이들의 선형결합이 안정적인 장기 균형 관계를 유지하는 성질."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#timeseries",
+   "level": 2,
+   "family": "basics",
+   "confidence": "high",
+   "domain": [
+    "econ",
+    "stats"
+   ]
+  },
+  {
+   "id": "lab:method/ardl-model",
+   "type": "Method",
+   "label": {
+    "ko": "ARDL 모형",
+    "en": "Autoregressive Distributed Lag Model"
+   },
+   "definition": {
+    "ko": "종속변수의 시차항과 설명변수의 시차항을 함께 포함하여 단기 충격과 장기 균형을 동시에 분석하는 계량모형."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#timeseries",
+   "level": 2,
+   "family": "evaluation",
+   "confidence": "high",
+   "domain": [
+    "econ"
+   ]
+  },
+  {
+   "id": "lab:method/placebo-test",
+   "type": "Method",
+   "label": {
+    "ko": "위약 순열 검정",
+    "en": "Placebo Permutation Test"
+   },
+   "definition": {
+    "ko": "충격이 없던 과거 시점들에서 인위적 외삽을 반복해 모형의 절차적 치우침을 교정하는 방법."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#lv3",
+   "level": 3,
+   "family": "evaluation",
+   "confidence": "high",
+   "domain": [
+    "econ",
+    "stats"
+   ]
+  },
+  {
+   "id": "lab:claim/it-decline-40p",
+   "type": "Claim",
+   "label": {
+    "ko": "정보통신업 대조군 대비 -40.7%p 구인수요 이탈",
+    "en": "IT 40.7%p relative drop vs Manufacturing"
+   },
+   "definition": {
+    "ko": "验证区间实际招聘수요(1,417 名)가 반사실(3,777 名)에 비해 제조업 대비 40.7%p 크게 감소함."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#lv3",
+   "level": 3,
+   "family": "evaluation",
+   "confidence": "high",
+   "source": [
+    {
+     "cite": "Ahn 2026",
+     "loc": "표 8"
+    }
+   ],
+   "domain": [
+    "econ"
+   ]
+  },
+  {
+   "id": "lab:claim/timing-anomaly-202208",
+   "type": "Claim",
+   "label": {
+    "ko": "이탈의 2022년 하반기 선행 시작",
+    "en": "Drop started pre-ChatGPT in 2022 H2"
+   },
+   "definition": {
+    "ko": "이탈이 ChatGPT 출시(2022.11) 이전인 2022년 8월(-7.7%p), 9월(-18.0%p)부터 시작됨."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#lv4",
+   "level": 3,
+   "family": "evaluation",
+   "confidence": "high",
+   "source": [
+    {
+     "cite": "Ahn 2026",
+     "loc": "IV장 2절"
+    }
+   ],
+   "domain": [
+    "econ"
+   ]
+  },
+  {
+   "id": "lab:claim/index-uncorrelated",
+   "type": "Claim",
+   "label": {
+    "ko": "사전 지수와 실제 충격 무상관",
+    "en": "Ex-ante index uncorrelated with actual gap"
+   },
+   "definition": {
+    "ko": "구교준 외(2024) 위험 순위와 실제 이탈 순위의 Spearman 순위상관 rho=-0.257 (p=.623)로 유의하지 않음."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#lv1",
+   "level": 3,
+   "family": "evaluation",
+   "confidence": "high",
+   "source": [
+    {
+     "cite": "Ahn 2026",
+     "loc": "표 12"
+    }
+   ],
+   "domain": [
+    "econ"
+   ]
+  },
+  {
+   "id": "lab:metric/worknet-valid-openings",
+   "type": "Metric",
+   "label": {
+    "ko": "워크넷 유효구인인원",
+    "en": "Work-Net Active Job Openings"
+   },
+   "definition": {
+    "ko": "말일 기준 마감되지 않은 기업의 채용 신청 인원으로 노동수요의 흐름을 나타냄."
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#bg",
+   "level": 1,
+   "family": "evaluation",
+   "confidence": "high",
+   "domain": [
+    "econ"
+   ]
+  },
+  {
+   "id": "lab:topic/autocorrelation",
+   "type": "Topic",
+   "label": {
+    "ko": "자기상관",
+    "en": "Autocorrelation"
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#kg",
+   "domain": [
+    "stats"
+   ],
+   "status": "known",
+   "confidence": "high",
+   "level": 3,
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "id": "lab:topic/factor-demand",
+   "type": "Topic",
+   "label": {
+    "ko": "요소 수요(조건부 노동수요)",
+    "en": "Factor demand (conditional labor demand)"
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#kg",
+   "domain": [
+    "econ"
+   ],
+   "status": "known",
+   "confidence": "high",
+   "level": 2,
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "id": "lab:topic/permutation-test",
+   "type": "Topic",
+   "label": {
+    "ko": "순열 검정",
+    "en": "Permutation test"
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#kg",
+   "domain": [
+    "stats"
+   ],
+   "status": "known",
+   "confidence": "high",
+   "level": 3,
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "id": "lab:topic/potential-outcomes",
+   "type": "Topic",
+   "label": {
+    "ko": "잠재 결과",
+    "en": "Potential outcomes"
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#kg",
+   "domain": [
+    "stats"
+   ],
+   "status": "known",
+   "confidence": "high",
+   "level": 4,
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "id": "lab:topic/stationarity",
+   "type": "Topic",
+   "label": {
+    "ko": "정상성",
+    "en": "Stationarity"
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#kg",
+   "domain": [
+    "stats"
+   ],
+   "status": "known",
+   "confidence": "high",
+   "level": 3,
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "id": "lab:topic/trend-seasonality",
+   "type": "Topic",
+   "label": {
+    "ko": "추세·계절",
+    "en": "Trend and seasonality"
+   },
+   "page": "01_labor_demand_ai",
+   "anchor": "#kg",
+   "domain": [
+    "stats"
+   ],
+   "status": "known",
+   "confidence": "high",
+   "level": 3,
+   "via": "rehang-2026-11-24"
   }
-  </script>
+ ],
+ "edges": [
+  {
+   "s": "lab:concept/time-series",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/autocorrelation",
+   "anchor": "#timeseries",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/autocorrelation",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/cointegration",
+   "anchor": "#timeseries",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/cointegration",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/ardl-model",
+   "anchor": "#timeseries",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/ardl-model",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/conditional-labor-demand",
+   "anchor": "#lv2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/conditional-labor-demand",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/counterfactual-analysis",
+   "anchor": "#factory",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/counterfactual-analysis",
+   "p": "lab:evaluatedBy",
+   "o": "lab:method/placebo-test",
+   "anchor": "#lv3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/counterfactual-analysis",
+   "p": "lab:supports",
+   "o": "lab:claim/it-decline-40p",
+   "anchor": "#lv3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/timing-anomaly-202208",
+   "p": "lab:contrastsWith",
+   "o": "lab:claim/it-decline-40p",
+   "anchor": "#lv4",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/index-uncorrelated",
+   "p": "lab:contrastsWith",
+   "o": "lab:concept/conditional-labor-demand",
+   "anchor": "#lv1",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/autocorrelation",
+   "p": "lab:broader",
+   "o": "lab:topic/autocorrelation",
+   "anchor": "#timeseries",
+   "confidence": "high",
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "s": "lab:concept/cointegration",
+   "p": "lab:broader",
+   "o": "lab:topic/stationarity",
+   "anchor": "#timeseries",
+   "confidence": "high",
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "s": "lab:concept/conditional-labor-demand",
+   "p": "lab:broader",
+   "o": "lab:topic/factor-demand",
+   "anchor": "#lv2",
+   "confidence": "high",
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "s": "lab:concept/time-series",
+   "p": "lab:broader",
+   "o": "lab:topic/trend-seasonality",
+   "anchor": "#timeseries",
+   "confidence": "high",
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "s": "lab:method/counterfactual-analysis",
+   "p": "lab:broader",
+   "o": "lab:topic/potential-outcomes",
+   "anchor": "#factory",
+   "confidence": "high",
+   "via": "rehang-2026-11-24"
+  },
+  {
+   "s": "lab:method/placebo-test",
+   "p": "lab:broader",
+   "o": "lab:topic/permutation-test",
+   "anchor": "#lv3",
+   "confidence": "mid",
+   "via": "rehang-2026-11-24"
+  }
+ ]
+}</script>
 
-  <script type="application/ld+json" id="kg-ld">
+  <script type="application/ld+json" id="kg-ld">{
+ "@context": {
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "schema": "http://schema.org/",
+  "lab": "urn:lab:"
+ },
+ "@graph": [
   {
-    "@context": {
-      "skos": "http://www.w3.org/2004/02/skos/core#",
-      "schema": "http://schema.org/",
-      "lab": "urn:lab:"
+   "@id": "lab:concept/conditional-labor-demand",
+   "@type": "skos:Concept",
+   "skos:prefLabel": {
+    "@language": "ko",
+    "@value": "조건부 노동수요함수"
+   },
+   "skos:definition": {
+    "@language": "ko",
+    "@value": "비용최소화 1계조건을 통해 자본을 소거한 노동수요함수"
+   },
+   "skos:broader": [
+    {
+     "@id": "lab:topic/factor-demand",
+     "lab:via": "rehang-2026-11-24"
+    }
+   ]
+  },
+  {
+   "@id": "lab:claim/it-decline-40p",
+   "@type": "schema:Claim",
+   "schema:name": "정보통신업 대조군 대비 -40.7%p 구인수요 이탈",
+   "schema:citation": "Ahn (2026) Table 8"
+  },
+  {
+   "@id": "lab:topic/autocorrelation",
+   "@type": [
+    "skos:Concept",
+    "lab:Topic"
+   ],
+   "lab:via": "rehang-2026-11-24",
+   "skos:prefLabel": [
+    {
+     "@value": "자기상관",
+     "@language": "ko"
     },
-    "@graph": [
-      {
-        "@id": "lab:concept/conditional-labor-demand",
-        "@type": "skos:Concept",
-        "skos:prefLabel": {"@language": "ko", "@value": "조건부 노동수요함수"},
-        "skos:definition": {"@language": "ko", "@value": "비용최소화 1계조건을 통해 자본을 소거한 노동수요함수"}
-      },
-      {
-        "@id": "lab:claim/it-decline-40p",
-        "@type": "schema:Claim",
-        "schema:name": "정보통신업 대조군 대비 -40.7%p 구인수요 이탈",
-        "schema:citation": "Ahn (2026) Table 8"
-      }
-    ]
+    {
+     "@value": "Autocorrelation",
+     "@language": "en"
+    }
+   ]
+  },
+  {
+   "@id": "lab:topic/factor-demand",
+   "@type": [
+    "skos:Concept",
+    "lab:Topic"
+   ],
+   "lab:via": "rehang-2026-11-24",
+   "skos:prefLabel": [
+    {
+     "@value": "요소 수요(조건부 노동수요)",
+     "@language": "ko"
+    },
+    {
+     "@value": "Factor demand (conditional labor demand)",
+     "@language": "en"
+    }
+   ]
+  },
+  {
+   "@id": "lab:topic/permutation-test",
+   "@type": [
+    "skos:Concept",
+    "lab:Topic"
+   ],
+   "lab:via": "rehang-2026-11-24",
+   "skos:prefLabel": [
+    {
+     "@value": "순열 검정",
+     "@language": "ko"
+    },
+    {
+     "@value": "Permutation test",
+     "@language": "en"
+    }
+   ]
+  },
+  {
+   "@id": "lab:topic/potential-outcomes",
+   "@type": [
+    "skos:Concept",
+    "lab:Topic"
+   ],
+   "lab:via": "rehang-2026-11-24",
+   "skos:prefLabel": [
+    {
+     "@value": "잠재 결과",
+     "@language": "ko"
+    },
+    {
+     "@value": "Potential outcomes",
+     "@language": "en"
+    }
+   ]
+  },
+  {
+   "@id": "lab:topic/stationarity",
+   "@type": [
+    "skos:Concept",
+    "lab:Topic"
+   ],
+   "lab:via": "rehang-2026-11-24",
+   "skos:prefLabel": [
+    {
+     "@value": "정상성",
+     "@language": "ko"
+    },
+    {
+     "@value": "Stationarity",
+     "@language": "en"
+    }
+   ]
+  },
+  {
+   "@id": "lab:topic/trend-seasonality",
+   "@type": [
+    "skos:Concept",
+    "lab:Topic"
+   ],
+   "lab:via": "rehang-2026-11-24",
+   "skos:prefLabel": [
+    {
+     "@value": "추세·계절",
+     "@language": "ko"
+    },
+    {
+     "@value": "Trend and seasonality",
+     "@language": "en"
+    }
+   ]
   }
-  </script>
+ ]
+}</script>
 
   <script type="application/json" id="refs-csl">
   [

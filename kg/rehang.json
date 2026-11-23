@@ -1,0 +1,104 @@
+{
+ "version": "1.0",
+ "made": "2026-11-24",
+ "via": "rehang-2026-11-24",
+ "domains": [
+  "econ",
+  "stats"
+ ],
+ "note": "분야 뼈대 주제에 다시 걸기(ai-lab-retrofit 15장). links는 자동 후보이며 틀린 줄은 지우면 된다. 빌드 스크립트가 있는 저장소는 빌드 끝에 rehang.apply_overlay()가 이 파일을 적용한다.",
+ "topics": {
+  "lab:topic/autocorrelation": {
+   "ko": "자기상관",
+   "en": "Autocorrelation",
+   "domain": [
+    "stats"
+   ],
+   "level": 3
+  },
+  "lab:topic/factor-demand": {
+   "ko": "요소 수요(조건부 노동수요)",
+   "en": "Factor demand (conditional labor demand)",
+   "domain": [
+    "econ"
+   ],
+   "level": 2
+  },
+  "lab:topic/permutation-test": {
+   "ko": "순열 검정",
+   "en": "Permutation test",
+   "domain": [
+    "stats"
+   ],
+   "level": 3
+  },
+  "lab:topic/potential-outcomes": {
+   "ko": "잠재 결과",
+   "en": "Potential outcomes",
+   "domain": [
+    "stats"
+   ],
+   "level": 4
+  },
+  "lab:topic/stationarity": {
+   "ko": "정상성",
+   "en": "Stationarity",
+   "domain": [
+    "stats"
+   ],
+   "level": 3
+  },
+  "lab:topic/trend-seasonality": {
+   "ko": "추세·계절",
+   "en": "Trend and seasonality",
+   "domain": [
+    "stats"
+   ],
+   "level": 3
+  }
+ },
+ "links": {
+  "lab:concept/autocorrelation": {
+   "topic": "lab:topic/autocorrelation",
+   "score": 3,
+   "why": "이름 같음",
+   "ko": "자기상관"
+  },
+  "lab:concept/cointegration": {
+   "topic": "lab:topic/stationarity",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "공적분"
+  },
+  "lab:concept/conditional-labor-demand": {
+   "topic": "lab:topic/factor-demand",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "조건부 노동수요함수"
+  },
+  "lab:concept/time-series": {
+   "topic": "lab:topic/trend-seasonality",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "시계열 데이터의 특성"
+  },
+  "lab:method/counterfactual-analysis": {
+   "topic": "lab:topic/potential-outcomes",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "반사실 분석"
+  },
+  "lab:method/placebo-test": {
+   "topic": "lab:topic/permutation-test",
+   "score": 2,
+   "why": "주제 이름이 개념 이름에 들어 있음",
+   "ko": "위약 순열 검정"
+  }
+ },
+ "retag": {
+  "from": [],
+  "to": [
+   "econ"
+  ]
+ }
+}
